@@ -16,12 +16,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_184348) do
 
   create_table "insurance_providers", force: :cascade do |t|
     t.string "name", null: false
-    t.string "external_identifier", null: false, comment: "External ID for reference"
+    t.string "identifier", null: false, comment: "External ID for reference"
     t.datetime "discarded_at", comment: "Used for soft deletes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discarded_at"], name: "index_insurance_providers_on_discarded_at"
-    t.index ["external_identifier"], name: "index_insurance_providers_on_external_identifier"
+    t.index ["identifier"], name: "index_insurance_providers_on_identifier"
     t.index ["name"], name: "index_insurance_providers_on_name"
   end
 

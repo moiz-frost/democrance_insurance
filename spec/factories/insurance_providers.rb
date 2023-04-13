@@ -9,11 +9,8 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-class InsuranceProvider < ApplicationRecord
-  include Discard::Model
-  include Identifiable
-
-  identifier_options prefix: 'IP'
-
-  validates_presence_of :name
+FactoryBot.define do
+  factory :insurance_provider do
+    name { Faker::Company.name }
+  end
 end

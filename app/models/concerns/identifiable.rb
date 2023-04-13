@@ -4,7 +4,8 @@ module Identifiable
   extend ActiveSupport::Concern
 
   included do
-    before_create :set_identifier
+    before_validation :set_identifier
+    validates_presence_of :identifier
   end
 
   class_methods do

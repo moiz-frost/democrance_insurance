@@ -9,11 +9,16 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-class InsuranceProvider < ApplicationRecord
-  include Discard::Model
-  include Identifiable
+require 'rails_helper'
 
-  identifier_options prefix: 'IP'
+RSpec.describe InsuranceProvider, type: :model do
+  subject(:insurance_provider) { build(:insurance_provider) }
 
-  validates_presence_of :name
+  it 'has a valid factory' do
+    expect(insurance_provider).to be_valid
+  end
+
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:name) }
+  end
 end
