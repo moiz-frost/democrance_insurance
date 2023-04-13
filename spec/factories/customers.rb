@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: customers
@@ -23,7 +25,7 @@ FactoryBot.define do
     dob { 20.years.ago }
     email { Faker::Internet.email }
     international_phone_number { "+97155#{Faker::Number.number(digits: 7)}" }
-    country { 'AE' }    
-    city { 'Abu Dhabi' }    
+    country { 'AE' }
+    city { 'Abu Dhabi' }
   end
 end

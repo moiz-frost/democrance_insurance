@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: customers
@@ -18,7 +20,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Customer, type: :model do
+RSpec.describe Customer do
   subject(:customer) { build(:customer) }
 
   it 'has a valid factory' do
