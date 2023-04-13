@@ -1,0 +1,4 @@
+en:
+  admin_user:
+    errors:
+      email_has_to_end_with_democrance: has to end with "@democrance.com"
