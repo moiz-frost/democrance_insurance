@@ -50,6 +50,16 @@ gem 'draper'
 # Money, currencies
 gem 'money-rails', '~> 1.15'
 
+# Admin dashboard
+gem 'activeadmin'
+
+# Auth
+gem 'devise'
+gem 'devise-security'
+
+gem 'sass-rails'
+gem 'sprockets-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'brakeman', require: false
