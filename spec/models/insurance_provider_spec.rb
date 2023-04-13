@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: insurance_providers
@@ -11,7 +13,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe InsuranceProvider, type: :model do
+RSpec.describe InsuranceProvider do
   subject(:insurance_provider) { build(:insurance_provider) }
 
   it 'has a valid factory' do

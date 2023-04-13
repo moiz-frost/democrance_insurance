@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: insurance_providers
@@ -15,5 +17,5 @@ class InsuranceProvider < ApplicationRecord
 
   identifier_options prefix: 'IP'
 
-  validates_presence_of :name
+  validates :name, presence: true
 end

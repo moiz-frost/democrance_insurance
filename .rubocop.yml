@@ -1,0 +1,98 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+  # TODO: use it if Codacy will add support https://github.com/codacy/codacy-meta/issues/389
+  # - rubocop-rake
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+
+  NewCops: enable
+  Exclude:
+    - bin/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - db/data_schema.rb
+
+Rails:
+  Enabled: true
+
+Rails/EnvironmentVariableAccess:
+  Enabled: false
+
+Rails/HttpStatus:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - staging
+    - test
+    - debug
+
+# Style -----------------------------------------------------------------------
+
+Style/Documentation:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/OpenStructUse:
+  Enabled: false
+
+# Layout -----------------------------------------------------------------------
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - Rakefile
+    - lib/taks/**/*.rake
+    - config/routes.rb
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 120
+
+# Metrics ---------------------------------------------------------------------
+
+Metrics/BlockLength:
+  Exclude:
+    - app/admin/**/*.rb
+    - config/**/*.rb
+    - Rakefile
+    - lib/tasks/**/*.rake
+    - spec/**/*.rb
+    - config/routes.rb
+
+
+# RSpec -----------------------------------------------------------------------
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 22
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5

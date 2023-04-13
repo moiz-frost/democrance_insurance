@@ -5,7 +5,7 @@ module Identifiable
 
   included do
     before_validation :set_identifier
-    validates_presence_of :identifier
+    validates :identifier, presence: true
   end
 
   class_methods do
@@ -39,7 +39,7 @@ module Identifiable
         prefix,
         Array.new(self.class.identifier_length) { [*'0'..'9'].sample }.join
       ].join('-')
-      break token unless self.class.where(identifier: token).exists?
+      break token unless self.class.exists?(identifier: token)
     end
   end
 end
