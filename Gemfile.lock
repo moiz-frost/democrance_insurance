@@ -207,6 +207,9 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (6.0.3)
+    paper_trail (13.0.0)
+      activerecord (>= 5.2)
+      request_store (~> 1.1)
     parallel (1.22.1)
     parser (3.2.2.0)
       ast (~> 2.4.1)
@@ -369,6 +372,7 @@ DEPENDENCIES
   faker
   money-rails (~> 1.15)
   pagy
+  paper_trail (~> 13.0)
   pg (~> 1.4)
   puma (~> 5.6)
   rack-cors

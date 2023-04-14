@@ -24,5 +24,7 @@ class Customer < ApplicationRecord
 
   identifier_options prefix: 'C'
 
+  has_paper_trail
+
   validates :first_name, :last_name, :dob, presence: true
 end

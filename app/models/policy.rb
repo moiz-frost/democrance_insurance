@@ -23,6 +23,8 @@ class Policy < ApplicationRecord
 
   identifier_options prefix: 'PO'
 
+  has_paper_trail
+
   monetize :premium_cents, :cover_cents
 
   belongs_to :policy_type
