@@ -11,6 +11,7 @@
 #  cover_currency   :string           default("USD"), not null
 #  identifier       :string           not null
 #  policy_type_id   :bigint
+#  customer_id      :bigint
 #  status           :integer          default("new"), not null
 #  effective_date   :date
 #  expiry_date      :date
@@ -20,6 +21,7 @@
 #
 class Policy < ApplicationRecord
   include Identifiable
+  include Discard::Model
 
   identifier_options prefix: 'PO'
 
@@ -28,6 +30,7 @@ class Policy < ApplicationRecord
   monetize :premium_cents, :cover_cents
 
   belongs_to :policy_type
+  belongs_to :customer
 
   enum status: {
     new: 0,

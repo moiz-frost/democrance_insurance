@@ -1,0 +1,10 @@
+<%= semantic_form_for @policy, as: :policy, url: quote_admin_policy_path(resource), method: :post, builder: ActiveAdmin::FormBuilder do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :premium %>
+    <%= f.input :cover %>
+    <%= f.input :effective_date, as: :datepicker %>
+    <%= f.input :expiry_date, as: :datepicker %>
+  <% end %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

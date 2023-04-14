@@ -11,7 +11,7 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
 
       t.date :dob, null: false, index: true
 
-      t.references :insurance_providers, index: true, foreign_key: { to_table: :insurance_providers }
+      t.references :insurance_provider, index: true, foreign_key: { to_table: :insurance_providers }
 
       # Soft deletes field
       t.datetime :discarded_at, index: true, comment: 'Used for soft deletes'

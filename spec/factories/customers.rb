@@ -13,7 +13,7 @@
 #  city                       :string
 #  identifier                 :string           not null
 #  dob                        :date             not null
-#  insurance_providers_id     :bigint
+#  insurance_provider_id      :bigint
 #  discarded_at               :datetime
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null

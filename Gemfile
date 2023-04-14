@@ -61,6 +61,8 @@ gem 'devise-security'
 gem 'sass-rails'
 gem 'sprockets-rails'
 
+gem 'country_select', '~> 8.0'
+
 # Auditing
 gem 'paper_trail', '~> 13.0'
 

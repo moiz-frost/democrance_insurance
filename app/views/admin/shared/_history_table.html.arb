@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+table_for locals[:versions].includes(:item) do
+  column 'Item' do |version|
+    version.item || version.item_type.constantize.try(:with_deleted)&.find_by(id: version.item_id)
+  end
+  column 'Type' do |version|
+    version.item_type.underscore.humanize
+  end
+  column 'Action' do |version|
+    version.event.humanize
+  end
+  column 'Before changes' do |version|
+    if version.event == 'update'
+      new_values = version.object_changes&.transform_values(&:first)
+      tag.pre JSON.pretty_generate(new_values)
+    end
+  end
+  column 'After changes' do |version|
+    if version.event == 'update'
+      new_values = version.object_changes&.transform_values(&:last)
+      tag.pre JSON.pretty_generate(new_values)
+    end
+  end
+  column('Modified at', &:created_at)
+  column 'Admin' do |version|
+    path = [:admin, AdminUser.find_by(email: version.whodunnit)] if version.whodunnit
+    path ? link_to(version.whodunnit, path) : nil
+  end
+end

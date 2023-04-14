@@ -25,6 +25,18 @@ Rails/EnvironmentVariableAccess:
 Rails/HttpStatus:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
 Rails/UnknownEnv:
   Environments:
     - development
@@ -56,22 +68,8 @@ Layout/LineLength:
     - lib/taks/**/*.rake
     - config/routes.rb
 
-Metrics/MethodLength:
-  Max: 15
-
 Metrics/ClassLength:
   Max: 120
-
-# Metrics ---------------------------------------------------------------------
-
-Metrics/BlockLength:
-  Exclude:
-    - app/admin/**/*.rb
-    - config/**/*.rb
-    - Rakefile
-    - lib/tasks/**/*.rake
-    - spec/**/*.rb
-    - config/routes.rb
 
 
 # RSpec -----------------------------------------------------------------------

@@ -11,6 +11,7 @@
 #  cover_currency   :string           default("USD"), not null
 #  identifier       :string           not null
 #  policy_type_id   :bigint
+#  customer_id      :bigint
 #  status           :integer          default("new"), not null
 #  effective_date   :date
 #  expiry_date      :date
