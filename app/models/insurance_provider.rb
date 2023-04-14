@@ -19,5 +19,7 @@ class InsuranceProvider < ApplicationRecord
 
   has_paper_trail
 
+  has_many :customers
+
   validates :name, presence: true
 end

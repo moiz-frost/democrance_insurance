@@ -13,7 +13,7 @@
 #  city                       :string
 #  identifier                 :string           not null
 #  dob                        :date             not null
-#  insurance_providers_id     :bigint
+#  insurance_provider_id      :bigint
 #  discarded_at               :datetime
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
@@ -25,6 +25,9 @@ class Customer < ApplicationRecord
   identifier_options prefix: 'C'
 
   has_paper_trail
+
+  belongs_to :insurance_provider
+  has_many :policies
 
   validates :first_name, :last_name, :dob, presence: true
 end

@@ -7,6 +7,7 @@ class CreatePolicies < ActiveRecord::Migration[7.0]
       t.string :identifier, null: false, index: true, comment: 'External ID for reference'
 
       t.references :policy_type, foreign_key: { to_table: :policy_types }
+      t.references :customer, foreign_key: { to_table: :customers }
 
       t.integer :status, default: 0, null: false
 

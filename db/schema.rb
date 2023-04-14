@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.string "city"
     t.string "identifier", null: false, comment: "External ID for reference"
     t.date "dob", null: false
-    t.bigint "insurance_providers_id"
+    t.bigint "insurance_provider_id"
     t.datetime "discarded_at", comment: "Used for soft deletes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.index ["first_name", "last_name", "dob"], name: "index_customers_on_first_name_and_last_name_and_dob"
     t.index ["first_name"], name: "index_customers_on_first_name"
     t.index ["identifier"], name: "index_customers_on_identifier"
-    t.index ["insurance_providers_id"], name: "index_customers_on_insurance_providers_id"
+    t.index ["insurance_provider_id"], name: "index_customers_on_insurance_provider_id"
     t.index ["last_name"], name: "index_customers_on_last_name"
   end
 
@@ -80,12 +80,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.string "cover_currency", default: "USD", null: false
     t.string "identifier", null: false, comment: "External ID for reference"
     t.bigint "policy_type_id"
+    t.bigint "customer_id"
     t.integer "status", default: 0, null: false
     t.date "effective_date"
     t.date "expiry_date"
     t.datetime "discarded_at", comment: "Used for soft deletes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_policies_on_customer_id"
     t.index ["discarded_at"], name: "index_policies_on_discarded_at"
     t.index ["expiry_date"], name: "index_policies_on_expiry_date"
     t.index ["identifier"], name: "index_policies_on_identifier"
@@ -96,8 +98,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.string "name", null: false
     t.string "description"
     t.string "identifier", null: false, comment: "External ID for reference"
+    t.datetime "discarded_at", comment: "Used for soft deletes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_policy_types_on_discarded_at"
     t.index ["identifier"], name: "index_policy_types_on_identifier"
     t.index ["name"], name: "index_policy_types_on_name"
   end
@@ -107,11 +111,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.json "object"
+    t.json "object_changes"
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "customers", "insurance_providers", column: "insurance_providers_id"
+  add_foreign_key "customers", "insurance_providers"
+  add_foreign_key "policies", "customers"
   add_foreign_key "policies", "policy_types"
 end

@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+panel 'History' do
+  render 'admin/shared/history_table', locals: { versions: assigns[:versions] }
+end
