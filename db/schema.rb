@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_205209) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_003908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,5 +73,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_205209) do
     t.index ["name"], name: "index_insurance_providers_on_name"
   end
 
+  create_table "policies", force: :cascade do |t|
+    t.integer "premium_cents", default: 0, null: false
+    t.string "premium_currency", default: "USD", null: false
+    t.integer "cover_cents", default: 0, null: false
+    t.string "cover_currency", default: "USD", null: false
+    t.string "identifier", null: false, comment: "External ID for reference"
+    t.bigint "policy_type_id"
+    t.integer "status", default: 0, null: false
+    t.date "effective_date"
+    t.date "expiry_date"
+    t.datetime "discarded_at", comment: "Used for soft deletes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_policies_on_discarded_at"
+    t.index ["expiry_date"], name: "index_policies_on_expiry_date"
+    t.index ["identifier"], name: "index_policies_on_identifier"
+    t.index ["policy_type_id"], name: "index_policies_on_policy_type_id"
+  end
+
+  create_table "policy_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "identifier", null: false, comment: "External ID for reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_policy_types_on_identifier"
+    t.index ["name"], name: "index_policy_types_on_name"
+  end
+
   add_foreign_key "customers", "insurance_providers", column: "insurance_providers_id"
+  add_foreign_key "policies", "policy_types"
 end

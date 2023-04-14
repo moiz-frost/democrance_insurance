@@ -7,12 +7,12 @@
 #  id                         :bigint           not null, primary key
 #  first_name                 :string           not null
 #  last_name                  :string           not null
-#  dob                        :string           not null
 #  email                      :string
 #  international_phone_number :string
 #  country                    :string
 #  city                       :string
 #  identifier                 :string           not null
+#  dob                        :date             not null
 #  insurance_providers_id     :bigint
 #  discarded_at               :datetime
 #  created_at                 :datetime         not null
