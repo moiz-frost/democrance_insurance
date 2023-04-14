@@ -57,8 +57,12 @@ gem 'activeadmin'
 gem 'devise'
 gem 'devise-security'
 
+# Assets
 gem 'sass-rails'
 gem 'sprockets-rails'
+
+# Auditing
+gem 'paper_trail', '~> 13.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

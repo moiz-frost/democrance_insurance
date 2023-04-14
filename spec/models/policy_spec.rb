@@ -36,4 +36,10 @@ RSpec.describe Policy do
       expect { policy.activate! }.to change(policy, :status).to('active')
     end
   end
+
+  describe 'History' do
+    it 'creates a new history' do
+      expect { policy.activate! }.to change(policy.versions, :count).by(1)
+    end
+  end
 end

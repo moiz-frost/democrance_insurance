@@ -17,5 +17,7 @@ class InsuranceProvider < ApplicationRecord
 
   identifier_options prefix: 'IP'
 
+  has_paper_trail
+
   validates :name, presence: true
 end
