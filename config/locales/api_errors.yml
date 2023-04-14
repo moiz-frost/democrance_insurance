@@ -1,0 +1,33 @@
+en:
+  api_errors:
+    not_found:
+      status: 404
+      code: NOT_FOUND
+      message: Not found
+
+    page_out_of_bounds:
+      status: 404
+      code: PAGE_OUT_OF_BOUNDS
+      message: The requested page is out of bounds
+
+    parameter_missing:
+      status: 400
+      code: PARAMETER_MISSING
+
+    record_not_found:
+      status: 404
+      code: RECORD_NOT_FOUND
+      message: Record not found
+
+    validation_error:
+      status: 422
+      code: VALIDATION_ERROR
+      message: Record is invalid
+
+    bad_request:
+      status: 400
+      code: BAD_REQUEST
+
+    unauthorized:
+      status: 401
+      code: UNAUTHORIZED

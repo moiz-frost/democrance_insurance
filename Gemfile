@@ -66,6 +66,11 @@ gem 'country_select', '~> 8.0'
 # Auditing
 gem 'paper_trail', '~> 13.0'
 
+# DRY family
+gem 'dry-schema', '~> 1.11.3'
+gem 'dry-struct', '~> 1.0'
+gem 'dry-validation', '~> 1.9'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'brakeman', require: false
