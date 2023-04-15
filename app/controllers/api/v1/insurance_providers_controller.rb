@@ -6,7 +6,11 @@ module Api::V1
 
     def index; end
 
-    def show; end
+    def show
+      operation = InsuranceProviders::Operation::Show.new(insurance_provider_identifier: params[:identifier])
+
+      operate(operation)
+    end
 
     def create
       contract = InsuranceProviders::Contract::Create.new.call(params.to_unsafe_h)
