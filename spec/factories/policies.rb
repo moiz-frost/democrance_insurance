@@ -26,5 +26,6 @@ FactoryBot.define do
     cover_cents { rand(0..500_000) }
     cover_currency { 'AED' }
     policy_type
+    customer
   end
 end

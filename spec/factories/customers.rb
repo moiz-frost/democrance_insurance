@@ -27,5 +27,6 @@ FactoryBot.define do
     international_phone_number { "+97155#{Faker::Number.number(digits: 7)}" }
     country { 'AE' }
     city { 'Abu Dhabi' }
+    insurance_provider
   end
 end
