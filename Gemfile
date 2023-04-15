@@ -66,6 +66,9 @@ gem 'country_select', '~> 8.0'
 # Auditing
 gem 'paper_trail', '~> 13.0'
 
+# Serializer
+gem 'active_model_serializers', '~> 0.10.0'
+
 # DRY family
 gem 'dry-schema', '~> 1.11.3'
 gem 'dry-struct', '~> 1.0'
