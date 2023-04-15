@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_113357) do
     t.string "last_name", null: false
     t.string "email"
     t.string "international_phone_number"
+    t.string "currency"
     t.string "country"
     t.string "city"
     t.string "identifier", null: false, comment: "External ID for reference"

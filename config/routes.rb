@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :insurance_providers, param: :identifier do
         resources :customers, param: :identifier do
-          resources :policies, param: :identifier
+          resources :policies, param: :identifier do
+            collection do
+              get '/generate', action: :generate
+            end
+          end
         end
       end
     end

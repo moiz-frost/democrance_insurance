@@ -30,4 +30,8 @@ class Customer < ApplicationRecord
   has_many :policies
 
   validates :first_name, :last_name, :dob, presence: true
+
+  def age
+    (Time.now.to_fs(:number).to_i - dob.to_time.to_fs(:number).to_i) / 1e10.to_i
+  end
 end

@@ -5,6 +5,7 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
       t.string :last_name, null: false, index: true
       t.string :email
       t.string :international_phone_number
+      t.string :currency
       t.string :country
       t.string :city
       t.string :identifier, null: false, index: true, comment: 'External ID for reference'

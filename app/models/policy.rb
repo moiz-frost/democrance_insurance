@@ -32,6 +32,8 @@ class Policy < ApplicationRecord
   belongs_to :policy_type
   belongs_to :customer
 
+  scope :active, -> { where(status: :active) }
+
   enum status: {
     new: 0,
     quoted: 1,
