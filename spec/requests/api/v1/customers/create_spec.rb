@@ -5,10 +5,11 @@ require 'rails_helper'
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers' do
   describe 'POST /api/v1/insurance_providers/:insurance_provider_identifier/customers' do
     let(:make_request) do
-      post "/api/v1/insurance_providers/#{insurance_provider.identifier}/customers", as: :json, params: payload
+      post "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers", as: :json, params: payload
     end
 
     let(:insurance_provider) { create(:insurance_provider) }
+    let(:insurance_provider_identifier) { insurance_provider.identifier }
 
     let(:payload) do
       {
@@ -28,6 +29,15 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
 
       it 'creates an insurance provider' do
         expect { make_request }.to change(Customer, :count).by 1
+      end
+    end
+
+    context 'with inccorect params' do
+      let(:insurance_provider_identifier) { 'incorrect' }
+
+      it 'returns not_found' do
+        make_request
+        expect(response).to have_http_status :not_found
       end
     end
   end
