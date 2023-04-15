@@ -32,4 +32,16 @@ RSpec.describe Customer do
     it { is_expected.to validate_presence_of(:last_name) }
     it { is_expected.to validate_presence_of(:dob) }
   end
+
+  describe '#age' do
+    before do
+      customer.dob = 50.years.ago
+    end
+
+    it {
+      expect(customer).to have_attributes(
+        age: 50
+      )
+    }
+  end
 end

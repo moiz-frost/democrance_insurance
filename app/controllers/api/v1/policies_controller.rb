@@ -28,11 +28,20 @@ module Api
         contract = Policies::Contract::Create.new.call(params.to_unsafe_h)
         operation = Policies::Operation::Create.new(
           params: contract.to_h.except(:insurance_provider_identifier),
-          insurance_provider_identifier: params['insurance_provider_identifier'],
-          customer_identifier: params['customer_identifier']
+          insurance_provider_identifier: params[:insurance_provider_identifier],
+          customer_identifier: params[:customer_identifier]
         )
 
         validate_and_operate(contract, operation)
+      end
+
+      def generate
+        operation = Policies::Operation::Generate.new(
+          insurance_provider_identifier: params[:insurance_provider_identifier],
+          customer_identifier: params[:customer_identifier]
+        )
+
+        operate(operation)
       end
     end
   end
