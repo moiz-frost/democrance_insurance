@@ -1,26 +1,28 @@
 # frozen_string_literal: true
 
-module Api::V1
-  module Operatable
-    extend ActiveSupport::Concern
+module Api
+  module V1
+    module Operatable
+      extend ActiveSupport::Concern
 
-    included do
-      private
+      included do
+        private
 
-      def validate_and_operate(contract, operation_instance)
-        return dry_error(contract) if contract.failure?
+        def validate_and_operate(contract, operation_instance)
+          return dry_error(contract) if contract.failure?
 
-        operation = operation_instance.call
-        return api_error(**operation.error) if operation.failure?
+          operation = operation_instance.call
+          return api_error(**operation.error) if operation.failure?
 
-        render operation.result
-      end
+          render operation.result
+        end
 
-      def operate(operation_instance)
-        operation = operation_instance.call
-        return api_error(**operation.error) if operation.failure?
+        def operate(operation_instance)
+          operation = operation_instance.call
+          return api_error(**operation.error) if operation.failure?
 
-        render operation.result
+          render operation.result
+        end
       end
     end
   end
