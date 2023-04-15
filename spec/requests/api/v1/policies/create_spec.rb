@@ -2,22 +2,22 @@
 
 require 'rails_helper'
 
-RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers' do
-  describe 'POST /api/v1/insurance_providers/:insurance_provider_identifier/customers' do
+RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies' do
+  describe 'POST /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies' do
     let(:make_request) do
-      post "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers", as: :json, params: payload
+      post "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers/#{customer_identifier}/policies",
+           as: :json, params: payload
     end
 
     let(:insurance_provider) { create(:insurance_provider) }
     let(:insurance_provider_identifier) { insurance_provider.identifier }
 
+    let(:customer) { create(:customer, insurance_provider: insurance_provider) }
+    let(:customer_identifier) { customer.identifier }
+
     let(:payload) do
       {
-        first_name: 'Test',
-        last_name: 'Test',
-        country: 'AE',
-        city: 'Dubai',
-        dob: Time.zone.today
+        type: 'car-policy'
       }
     end
 
@@ -28,12 +28,18 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
 
       it 'creates an insurance provider' do
-        expect { make_request }.to change(Customer, :count).by 1
+        expect { make_request }.to(
+          change(Policy, :count).by(1)
+          .and(
+            change(PolicyType, :count).by(1)
+          )
+        )
       end
     end
 
     context 'with inccorect identifier' do
-      let(:insurance_provider_identifier) { 'incorrect' }
+      let(:customer) { create(:customer) }
+      let(:customer_identifier) { customer.identifier }
 
       it 'returns not_found' do
         make_request
@@ -43,12 +49,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
 
     context 'with inccorect params' do
       let(:payload) do
-        {
-          last_name: 'Test',
-          country: 'AE',
-          city: 'Dubai',
-          dob: Time.zone.today
-        }
+        {}
       end
 
       it 'returns unprocessable_entity' do

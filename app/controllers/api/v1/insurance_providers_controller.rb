@@ -5,8 +5,6 @@ module Api
     class InsuranceProvidersController < ApiController
       include Concerns::Operatable
 
-      def index; end
-
       def show
         operation = InsuranceProviders::Operation::Show.new(insurance_provider_identifier: params[:identifier])
 
