@@ -32,12 +32,30 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
     end
 
-    context 'with inccorect params' do
+    context 'with inccorect identifier' do
       let(:insurance_provider_identifier) { 'incorrect' }
 
       it 'returns not_found' do
         make_request
         expect(response).to have_http_status :not_found
+      end
+    end
+
+    context 'with inccorect params' do
+      let(:payload) do
+        {
+          last_name: 'Test',
+          country: 'AE',
+          city: 'Dubai',
+          dob: Time.zone.today
+        }
+      end
+
+      it 'returns not_found' do
+        make_request
+        json = response.parsed_body
+        expect(json['error_code']).to eq('VALIDATION_ERROR')
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
