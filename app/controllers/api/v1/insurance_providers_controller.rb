@@ -3,7 +3,7 @@
 module Api
   module V1
     class InsuranceProvidersController < ApiController
-      include Operatable
+      include Concerns::Operatable
 
       def index; end
 

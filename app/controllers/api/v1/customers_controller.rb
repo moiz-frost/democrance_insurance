@@ -3,9 +3,16 @@
 module Api
   module V1
     class CustomersController < ApiController
-      include Operatable
+      include Concerns::Operatable
 
-      def index; end
+      def index
+        operation = Customers::Operation::List.new(
+          insurance_provider_identifier: params[:insurance_provider_identifier],
+          params: params
+        )
+
+        operate(operation)
+      end
 
       def show
         operation = Customers::Operation::Show.new(

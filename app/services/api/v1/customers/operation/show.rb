@@ -19,11 +19,11 @@ module Api
 
           private
 
+          attr_reader :insurance_provider_identifier, :customer_identifier
+
           def insurance_provider
             @insurance_provider ||= InsuranceProvider.find_by!(identifier: insurance_provider_identifier)
           end
-
-          attr_reader :insurance_provider_identifier, :customer_identifier
         end
       end
     end

@@ -3,8 +3,8 @@
 module Api
   module V1
     class ApiController < ActionController::API
-      include ExceptionHandler
-      include ApiErrors
+      include Concerns::ExceptionHandler
+      include Concerns::ApiErrors
 
       def routing_error
         not_found!
