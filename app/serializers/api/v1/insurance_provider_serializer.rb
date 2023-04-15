@@ -3,7 +3,7 @@
 module Api
   module V1
     class InsuranceProviderSerializer < ActiveModel::Serializer
-      attributes :name, :identifier
+      attributes :identifier, :name
     end
   end
 end
