@@ -30,7 +30,7 @@ module Api
 
           attr_reader :insurance_provider_identifier, :params
 
-          def fetch_insurance_provider_customers(_insurance_provider_identifier)
+          def fetch_insurance_provider_customers
             pagy, customers = pagy(insurance_provider.customers)
 
             [pagy, customers]

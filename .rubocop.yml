@@ -62,7 +62,7 @@ Style/OpenStructUse:
 # Layout -----------------------------------------------------------------------
 
 Layout/LineLength:
-  Max: 120
+  Max: 200
   Exclude:
     - Rakefile
     - lib/taks/**/*.rake
