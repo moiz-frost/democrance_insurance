@@ -14,7 +14,7 @@ module Api
           end
 
           def call
-            pagy, customers = fetch_insurance_provider_customers(insurance_provider_identifier)
+            pagy, customers = fetch_insurance_provider_customers
 
             success(
               status: :ok,

@@ -17,7 +17,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
         last_name: 'Test',
         country: 'AE',
         city: 'Dubai',
-        dob: Time.zone.today
+        dob: '25/6/2000'
       }
     end
 
@@ -47,7 +47,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
           last_name: 'Test',
           country: 'AE',
           city: 'Dubai',
-          dob: Time.zone.today
+          dob: Time.zone.today.to_s
         }
       end
 
