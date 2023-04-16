@@ -1,24 +1,63 @@
-# README
+# Democrance Insurance API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### Pre-requisites
 
-* Ruby version
+Please ensure that ruby 2.7.2 is installed. You can use rbenv to manage your ruby versions
 
-* System dependencies
+### Install your project's gems
+```
+cd <PROJECT> && bundle install
+```
 
-* Configuration
+### Create Postgres User
 
-* Database creation
+Use the below credentials when prompted:
 
-* Database initialization
+- username: `postgres_user`
 
-* How to run the test suite
+- password: `mysecurepass`
 
-* Services (job queues, cache servers, search engines, etc.)
+If asked, the new role shall be a `super user`
+```
+sudo -u postgres createuser --interactive --pwprompt
+```
 
-* Deployment instructions
+If this does not work, try:
+```
+psql -U postgres
+CREATE USER postgres_user WITH PASSWORD 'mysecurepass' SUPERUSER;
+```
 
-* ...
+### Database setup
+
+```
+bin/rails db:drop db:create db:schema:load db:migrate db:seed
+```
+
+### Run tests
+```
+bundle exec rspec
+```
+
+### Generate api docs using redoc
+```
+rake api:doc:html\[v1\]
+```
+
+### Lint your code
+```
+rubocop -A
+```
+
+This will generate an html file which you can open in the browser
+
+### Boot rails app
+```
+bin/rails server -b 0.0.0.0 -p 3000
+```
+
+## Endpoints
+
+- API: http://localhost:3000/api
+- Admin: http://localhost:3000/admin
