@@ -6,7 +6,7 @@ module Api
       include Concerns::ExceptionHandler
       include Concerns::ApiErrors
 
-      def routing_error
+      def routing_error!
         not_found!
       end
 

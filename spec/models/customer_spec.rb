@@ -21,7 +21,7 @@
 require 'rails_helper'
 
 RSpec.describe Customer do
-  subject(:customer) { build(:customer) }
+  subject(:customer) { create(:customer) }
 
   it 'has a valid factory' do
     expect(customer).to be_valid
@@ -31,6 +31,11 @@ RSpec.describe Customer do
     it { is_expected.to validate_presence_of(:first_name) }
     it { is_expected.to validate_presence_of(:last_name) }
     it { is_expected.to validate_presence_of(:dob) }
+
+    it 'invalidates the record if identifier is changed' do
+      customer.identifier = 'xyz'
+      expect(customer).to be_invalid
+    end
   end
 
   describe '#age' do
