@@ -3,7 +3,7 @@
 
 ### Pre-requisites
 
-Please ensure that ruby 2.7.2 is installed
+Please ensure that ruby 2.7.2 is installed. You can use rbenv to manage your ruby versions
 
 ### Install your project's gems
 ```
