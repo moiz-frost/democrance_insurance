@@ -12,6 +12,10 @@ Rails.application.routes.draw do
             collection do
               get '/generate', action: :generate
             end
+
+            member do
+              patch '/quote', action: :quote
+            end
           end
         end
       end

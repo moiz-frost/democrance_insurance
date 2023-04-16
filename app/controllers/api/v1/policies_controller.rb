@@ -43,6 +43,18 @@ module Api
 
         operate(operation)
       end
+
+      def quote
+        contract = Policies::Contract::Quote.new.call(params.to_unsafe_h)
+        operation = Policies::Operation::Quote.new(
+          insurance_provider_identifier: params[:insurance_provider_identifier],
+          customer_identifier: params[:customer_identifier],
+          policy_identifier: params[:identifier],
+          params: contract.to_h.except(:insurance_provider_identifier, :customer_identifier, :identifier)
+        )
+
+        operate(operation)
+      end
     end
   end
 end
