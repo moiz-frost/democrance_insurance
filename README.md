@@ -44,6 +44,12 @@ bundle exec rspec
 ```
 rake api:doc:html\[v1\]
 ```
+
+### Lint your code
+```
+rubocop -A
+```
+
 This will generate an html file which you can open in the browser
 
 ### Boot rails app
