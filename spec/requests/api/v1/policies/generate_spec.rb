@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/generate' do
   include ApiDocs::V1::Policies::Api
 
-  describe 'POST /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/generate' do
+  describe 'GET /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/generate' do
     include ApiDocs::V1::Policies::Generate
 
     let(:make_request) do
