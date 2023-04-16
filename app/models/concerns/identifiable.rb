@@ -4,7 +4,8 @@ module Identifiable
   extend ActiveSupport::Concern
 
   included do
-    before_validation :set_identifier
+    before_validation :set_identifier, if: ->(i) { i.identifier.blank? }
+    validates :identifier, frozen: true, if: :id?
     validates :identifier, presence: true
   end
 
