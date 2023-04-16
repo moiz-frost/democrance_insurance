@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies' do
+  include ApiDocs::V1::Policies::Api
+
   describe 'GET /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies' do
+    include ApiDocs::V1::Policies::List
+
     let(:make_request) do
       get "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers/#{customer_identifier}/policies"
     end
@@ -23,7 +27,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     end
 
     context 'with valid params' do
-      it 'returns success' do
+      it 'returns success', :dox do
         make_request
         expect(response).to have_http_status :ok
         json = response.parsed_body
@@ -34,7 +38,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     context 'with invalid params' do
       let(:customer_identifier) { 'incorrect' }
 
-      it 'returns not found' do
+      it 'returns not found', :dox do
         make_request
         expect(response).to have_http_status :not_found
       end

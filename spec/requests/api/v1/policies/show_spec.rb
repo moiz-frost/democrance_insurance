@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier' do
+  include ApiDocs::V1::Policies::Api
+
   describe 'POST /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier' do
+    include ApiDocs::V1::Policies::Show
+
     let(:make_request) do
       get "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers/#{customer_identifier}/policies/#{policy_identifier}"
     end
@@ -18,7 +22,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     let(:policy_identifier) { policy.identifier }
 
     context 'with valid params' do
-      it 'returns success' do
+      it 'returns success', :dox do
         make_request
         expect(response).to have_http_status :ok
         expect(response).to match_schema Api::V1::PolicySchema::Object
@@ -28,7 +32,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     context 'with invalid params' do
       let(:policy_identifier) { 'incorrect' }
 
-      it 'returns not found' do
+      it 'returns not found', :dox do
         make_request
         expect(response).to have_http_status :not_found
       end
