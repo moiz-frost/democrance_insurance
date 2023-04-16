@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  begin
+    ActiveAdmin.routes(self)
+  rescue StandardError
+    ActiveAdmin::DatabaseHitDuringLoad
+  end
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
