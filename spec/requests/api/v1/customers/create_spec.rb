@@ -32,7 +32,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
     end
 
-    context 'with inccorect identifier' do
+    context 'with incorrect identifier' do
       let(:insurance_provider_identifier) { 'incorrect' }
 
       it 'returns not_found' do
@@ -41,7 +41,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
     end
 
-    context 'with inccorect params' do
+    context 'with incorrect params' do
       let(:payload) do
         {
           last_name: 'Test',

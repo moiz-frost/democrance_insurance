@@ -37,7 +37,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
     end
 
-    context 'with inccorect identifier' do
+    context 'with incorrect identifier' do
       let(:customer) { create(:customer) }
       let(:customer_identifier) { customer.identifier }
 
@@ -47,7 +47,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       end
     end
 
-    context 'with inccorect params' do
+    context 'with incorrect params' do
       let(:payload) do
         {}
       end
