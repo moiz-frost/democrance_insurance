@@ -28,6 +28,8 @@ SimpleCov.start 'rails' do
   )
 
   track_files '**/*.rb'
+
+  add_filter 'admin/**/*.rb'
 end
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
