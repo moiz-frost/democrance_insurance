@@ -31,7 +31,18 @@ class Customer < ApplicationRecord
 
   validates :first_name, :last_name, :dob, presence: true
 
+  # For ActiveAdmin filter
+  scope :policy_type_eq, lambda { |type|
+    joins(policies: :policy_type).where(PolicyType.arel_table[:name].eq(type))
+  }
+
   def age
     (Time.now.to_fs(:number).to_i - dob.to_time.to_fs(:number).to_i) / 1e10.to_i
+  end
+
+  class << self
+    def ransackable_scopes(_auth_object = nil)
+      [:policy_type_eq]
+    end
   end
 end

@@ -8,6 +8,16 @@ ActiveAdmin.register Customer do
 
   actions :all, except: [:destroy]
 
+  filter :identifier
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :international_phone_number
+  filter :policy_type, as: :select, label: 'Policy Type', collection: PolicyType.all.pluck(:name), filters: [:eq]
+  filter :country
+  filter :city
+  filter :dob
+
   index do
     id_column
     column :identifier
