@@ -36,7 +36,12 @@ ActiveAdmin.register Policy do
 
   member_action :activate, method: %i[patch] do
     policy = resource
-    policy.active_status!
+
+    policy = Policies::ActivateService.new(
+      insurance_provider_identifier: policy.customer.insurance_provider.identifier,
+      customer_identifier: policy.customer.identifier,
+      policy_identifier: policy.identifier
+    ).call
 
     flash.notice = t('admin.policy.activated')
     redirect_to admin_policy_path(policy)

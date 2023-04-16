@@ -55,6 +55,16 @@ module Api
 
         operate(operation)
       end
+
+      def activate
+        operation = Policies::Operation::Activate.new(
+          insurance_provider_identifier: params[:insurance_provider_identifier],
+          customer_identifier: params[:customer_identifier],
+          policy_identifier: params[:identifier]
+        )
+
+        operate(operation)
+      end
     end
   end
 end

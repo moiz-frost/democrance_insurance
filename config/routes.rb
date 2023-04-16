@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
             member do
               patch '/quote', action: :quote
+              patch '/activate', action: :activate
             end
           end
         end
