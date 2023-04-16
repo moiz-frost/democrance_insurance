@@ -1,0 +1,4 @@
+Generate a policy
+
+Error codes:
+- `VALIDATION_ERROR`

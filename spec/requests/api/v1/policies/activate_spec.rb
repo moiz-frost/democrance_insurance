@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier/activate' do
+  include ApiDocs::V1::Policies::Api
+
   describe 'PATCH /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier/activate' do
+    include ApiDocs::V1::Policies::Activate
+
     let(:make_request) do
       patch "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers/#{customer_identifier}/policies/#{policy_identifier}/activate", as: :json
     end
@@ -27,7 +31,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     end
 
     context 'with valid params' do
-      it 'returns success' do
+      it 'returns success', :dox do
         make_request
         expect(response).to have_http_status :ok
       end

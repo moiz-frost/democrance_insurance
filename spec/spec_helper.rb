@@ -14,6 +14,22 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+
+require 'simplecov'
+require 'simplecov-lcov'
+
+SimpleCov.start 'rails' do
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+  formatter SimpleCov::Formatter::MultiFormatter.new(
+    [
+      SimpleCov::Formatter::HTMLFormatter,
+      SimpleCov::Formatter::LcovFormatter
+    ]
+  )
+
+  track_files '**/*.rb'
+end
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

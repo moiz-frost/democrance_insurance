@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier/quote' do
+  include ApiDocs::V1::Policies::Api
+
   describe 'PATCH /api/v1/insurance_providers/:insurance_provider_identifier/customers/:customer_identifier/policies/:policy_identifier/quote' do
+    include ApiDocs::V1::Policies::Quote
+
     let(:make_request) do
       patch "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers/#{customer_identifier}/policies/#{policy_identifier}/quote",
             as: :json, params: payload
@@ -28,7 +32,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     end
 
     context 'with valid params' do
-      it 'returns success' do
+      it 'returns success', :dox do
         make_request
         expect(response).to have_http_status :ok
         expect(policy.reload).to have_attributes(
@@ -45,7 +49,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       let(:customer) { create(:customer) }
       let(:customer_identifier) { customer.identifier }
 
-      it 'returns not_found' do
+      it 'returns not_found', :dox do
         make_request
         expect(response).to have_http_status :not_found
       end

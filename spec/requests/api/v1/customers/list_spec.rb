@@ -2,8 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers' do
-  describe 'GET /api/v1/insurance_providers/:insurance_provider_identifier/customers' do
+RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/customers?page=:page&per_page=:per_page' do
+  include ApiDocs::V1::Customers::Api
+
+  describe 'GET /api/v1/insurance_providers/:insurance_provider_identifier/customers?page=:page&per_page=:per_page' do
+    include ApiDocs::V1::Customers::List
+
     let(:make_request) do
       get "/api/v1/insurance_providers/#{insurance_provider_identifier}/customers?page=#{page}&per_page=#{per_page}"
     end
@@ -23,7 +27,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     end
 
     context 'with valid params' do
-      it 'returns success' do
+      it 'returns success', :dox do
         make_request
         expect(response).to have_http_status :ok
         json = response.parsed_body
@@ -35,7 +39,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
     context 'with invalid params' do
       let(:insurance_provider_identifier) { 'incorrect' }
 
-      it 'returns not found' do
+      it 'returns not found', :dox do
         make_request
         expect(response).to have_http_status :not_found
       end
@@ -45,7 +49,7 @@ RSpec.describe '/api/v1/insurance_providers/:insurance_provider_identifier/custo
       context 'when requesting an out of bound page to the right' do
         let(:page) { 5 }
 
-        it 'returns PAGE_OUT_OF_BOUNDS error' do
+        it 'returns PAGE_OUT_OF_BOUNDS error', :dox do
           make_request
 
           json = response.parsed_body
