@@ -32,7 +32,7 @@ CREATE USER postgres_user WITH PASSWORD 'mysecurepass' SUPERUSER;
 ### Database setup
 
 ```
-bin/rails db:drop db:create db:schema:load db:migrate:with_data && rails db:seed
+bin/rails db:drop db:create db:schema:load db:migrate db:seed
 ```
 
 ### Run tests
